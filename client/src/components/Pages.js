@@ -13,7 +13,7 @@ export const Pages = observer(() => {
   };
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} sx={{ pb: '20px' }}>
       <Pagination count={pageCount} page={device.page} onChange={handlePageChange} variant="outlined" color="primary" />
     </Stack>
   );

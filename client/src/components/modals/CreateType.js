@@ -25,7 +25,7 @@ export const CreateType = ({ visibility, setVisibility }) => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
+          width: { xs: '220px', sm: '400px' },
           bgcolor: '#fff',
           borderRadius: '5px',
           boxShadow: 24,

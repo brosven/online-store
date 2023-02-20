@@ -14,21 +14,27 @@ export const Shop = observer(() => {
   useEffect(() => {
     getTypes().then((data) => device.setTypes(data));
     getBrands().then((data) => device.setBrands(data));
-    getDevices(null, null, 1, 2).then((data) => {
+    getDevices(null, null, device.page, device.limit).then((data) => {
       device.setDevices(data.rows);
       device.setTotalCount(data.count);
     });
   }, []);
 
   useEffect(() => {
-    getDevices(device.selectedType.id, device.selectedBrand.id, device.page, 2).then((data) => {
+    getDevices(device.selectedType.id, device.selectedBrand.id, device.page, device.limit).then((data) => {
       device.setDevices(data.rows);
       device.setTotalCount(data.count);
     });
   }, [device.page, device.selectedType, device.selectedBrand]);
 
   return (
-    <Container sx={{ display: 'flex', flexDirection: 'row', gap: 4 }}>
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
+        gap: { xs: 1, sm: 2 },
+      }}
+    >
       <TypeBar />
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <BrandBar />

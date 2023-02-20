@@ -10,9 +10,9 @@ export const DeviceItem = ({ device }) => {
   };
 
   return (
-    <Card onClick={handleCardClick} sx={{ cursor: 'pointer' }}>
+    <Card onClick={handleCardClick} sx={{ cursor: 'pointer', padding: '10px' }}>
       <CardMedia
-        sx={{ height: '150px', width: '150px' }}
+        sx={{ height: { xs: '260px', sm: '200px' }, width: { xs: '250px', sm: '180px' } }}
         image={process.env.REACT_APP_API_URL + device.img}
         title={device.name}
       />

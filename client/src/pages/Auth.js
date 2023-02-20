@@ -18,7 +18,7 @@ export const Auth = observer(() => {
   const [password, setPassword] = useState('');
   const handleChangePasswrod = (e) => setPassword(e.target.value);
 
-  const signInOrLogin = async () => {
+  const signInOrReg = async () => {
     try {
       let userData;
       if (isLogin) {
@@ -38,7 +38,7 @@ export const Auth = observer(() => {
     <Container
       sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: window.innerHeight - 164 }}
     >
-      <Card sx={{ minWidth: '300px', p: 5 }}>
+      <Card sx={{ minWidth: '240px', p: 5 }}>
         <Typography
           variant="h4"
           sx={{
@@ -66,7 +66,7 @@ export const Auth = observer(() => {
             placeholder="Введите ваш пароль"
             type="password"
           />
-          <Button onClick={signInOrLogin} variant="contained">
+          <Button onClick={signInOrReg} variant="contained">
             {isLogin ? 'Войти' : 'Регистрация'}
           </Button>
         </Box>

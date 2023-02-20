@@ -84,17 +84,17 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
   };
 
   return (
-    <Modal open={visibility} onClose={handleClose} aria-labelledby="modal-modal-title">
+    <Modal open={visibility} onClose={handleClose} aria-labelledby="modal-modal-title" sx={{ overflow: 'scroll' }}>
       <Box
         sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
           position: 'absolute',
-          top: '50%',
+          top: { xs: '58%', sm: '50%' },
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 400,
+          width: { xs: '220px', sm: '400px' },
           bgcolor: '#fff',
           borderRadius: '5px',
           boxShadow: 24,
