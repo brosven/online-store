@@ -50,6 +50,8 @@ export const DevicePage = () => {
               xs: '1.5rem',
               md: '2.5rem',
             },
+            maxWidth: { xs: '200px', sm: '300px', md: '350px' },
+            overflowWrap: 'break-word',
           }}
         >
           {device.name}
@@ -65,13 +67,23 @@ export const DevicePage = () => {
               md: '1.75rem',
             },
             marginBottom: '10px',
+            maxWidth: { xs: '200px', sm: '300px', md: '350px' },
+            overflowWrap: 'break-word',
           }}
         >
           Характеристики
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           {device.info.map((el) => (
-            <Typography key={el.id} sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography
+              key={el.id}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                maxWidth: { xs: '200px', sm: '300px', md: '350px' },
+                overflowWrap: 'break-word',
+              }}
+            >
               <Typography sx={{ color: '#7e7e83' }} component="span" key={el.id + 'title'}>
                 {el.title + ':'}
               </Typography>
@@ -111,6 +123,8 @@ export const DevicePage = () => {
               },
               display: 'flex',
               alignItems: 'center',
+              maxWidth: { xs: '200px', sm: '300px', md: '350px' },
+              overflowWrap: 'break-word',
             }}
           >
             {device.price}

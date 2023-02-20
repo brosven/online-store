@@ -52,13 +52,13 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
   };
 
   const handleRemoveInfo = (id) => {
-    setInfo((prevInfo) => prevInfo.filter((i) => i.id !== id));
+    setInfo((prevInfo) => prevInfo.filter((i) => i.number !== id));
   };
 
   const handleChangeInfoTitle = (id, title) => {
     setInfo((prevInfo) =>
       prevInfo.map((i) => {
-        return i.id === id ? { ...i, title } : i;
+        return i.number === id ? { ...i, title } : i;
       }),
     );
   };
@@ -66,7 +66,7 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
   const handleChangeInfoDescription = (id, description) => {
     setInfo((prevInfo) =>
       prevInfo.map((i) => {
-        return i.id === id ? { ...i, description } : i;
+        return i.number === id ? { ...i, description } : i;
       }),
     );
   };
@@ -154,12 +154,12 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
             <Box key={i.number} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <TextField
                 value={i.title}
-                onChange={(e) => handleChangeInfoTitle(i.id, e.target.value)}
+                onChange={(e) => handleChangeInfoTitle(i.number, e.target.value)}
                 placeholder="Введите название свойства"
               />
               <TextField
                 value={i.description}
-                onChange={(e) => handleChangeInfoDescription(i.id, e.target.value)}
+                onChange={(e) => handleChangeInfoDescription(i.number, e.target.value)}
                 placeholder="Введите описание свойства"
               />
               <Button onClick={() => handleRemoveInfo(i.id)}>Удалить</Button>
