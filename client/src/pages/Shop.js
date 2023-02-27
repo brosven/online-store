@@ -9,11 +9,11 @@ import { getBrands, getDevices, getTypes } from '../http/deviceApi';
 import { Pages } from '../components/Pages';
 
 export const Shop = observer(() => {
-  const { device } = useContext(Context);
+  const { device, brand, type } = useContext(Context);
 
   useEffect(() => {
-    getTypes().then((data) => device.setTypes(data));
-    getBrands().then((data) => device.setBrands(data));
+    getTypes().then((data) => type.setTypes(data));
+    getBrands().then((data) => brand.setBrands(data));
     getDevices(null, null, device.page, device.limit).then((data) => {
       device.setDevices(data.rows);
       device.setTotalCount(data.count);
@@ -21,11 +21,11 @@ export const Shop = observer(() => {
   }, []);
 
   useEffect(() => {
-    getDevices(device.selectedType.id, device.selectedBrand.id, device.page, device.limit).then((data) => {
+    getDevices(type.selectedType.id, brand.selectedBrand.id, device.page, device.limit).then((data) => {
       device.setDevices(data.rows);
       device.setTotalCount(data.count);
     });
-  }, [device.page, device.selectedType, device.selectedBrand]);
+  }, [device.page, type.selectedType, brand.selectedBrand]);
 
   return (
     <Container

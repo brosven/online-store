@@ -6,14 +6,24 @@ import { useContext, useState } from 'react';
 import { Context } from '../index';
 
 export const BrandBar = observer(() => {
-  const { device } = useContext(Context);
+  const { brand, device } = useContext(Context);
   const [isOpen, setIsOpen] = useState(true);
 
-  const brandToggle = (brand) => {
-    if (device.selectedBrand.id) {
-      device.selectedBrand.id === brand.id ? device.setSelectedBrand({}) : device.setSelectedBrand(brand);
+  const handleResetBrand = () => {
+    brand.setSelectedBrand({});
+    device.setPage(1);
+  };
+
+  const handleSelectBrand = (el) => {
+    brand.setSelectedBrand(el);
+    device.setPage(1);
+  };
+
+  const brandToggle = (el) => {
+    if (brand.selectedBrand.id) {
+      brand.selectedBrand.id === el.id ? handleResetBrand() : handleSelectBrand(el);
     } else {
-      device.setSelectedBrand(brand);
+      brand.setSelectedBrand(el);
     }
   };
 
@@ -39,14 +49,14 @@ export const BrandBar = observer(() => {
             width: 'fit-content',
           }}
         >
-          {device.brands.map((brand) => (
+          {brand.brands.map((el) => (
             <ListItemButton
               sx={{ width: '100px' }}
-              key={brand.id}
-              onClick={() => brandToggle(brand)}
-              selected={device.selectedBrand.id ? brand.id === device.selectedBrand.id : false}
+              key={el.id}
+              onClick={() => brandToggle(el)}
+              selected={brand.selectedBrand.id ? el.id === brand.selectedBrand.id : false}
             >
-              <ListItemText primary={brand.name} />
+              <ListItemText primary={el.name} />
             </ListItemButton>
           ))}
         </List>

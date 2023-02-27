@@ -16,12 +16,12 @@ import { Context } from '../../index';
 import { observer } from 'mobx-react-lite';
 
 export const CreateDevice = observer(({ visibility, setVisibility }) => {
-  const { device } = useContext(Context);
+  const { type, brand } = useContext(Context);
   const handleClose = () => setVisibility(false);
 
   useEffect(() => {
-    getTypes().then((data) => device.setTypes(data));
-    getBrands().then((data) => device.setBrands(data));
+    getTypes().then((data) => type.setTypes(data));
+    getBrands().then((data) => brand.setBrands(data));
   }, []);
 
   const [deviceFields, setdeviceFields] = useState({ brand: '', type: '', deviceName: '', devicePrice: 0 });
@@ -109,7 +109,7 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
           <FormControl fullWidth>
             <InputLabel id="type-label">Выберите тип</InputLabel>
             <Select value={deviceFields.type} label="Выберите тип" onChange={handleChangeType} labelId="type-label">
-              {device.types.map((type) => (
+              {type.types.map((type) => (
                 <MenuItem key={type.name} value={type.id}>
                   {type.name}
                 </MenuItem>
@@ -125,7 +125,7 @@ export const CreateDevice = observer(({ visibility, setVisibility }) => {
               onChange={handleChangeBrand}
               labelId="brand-label"
             >
-              {device.brands.map((brand) => (
+              {brand.brands.map((brand) => (
                 <MenuItem key={brand.name} value={brand.id}>
                   {brand.name}
                 </MenuItem>

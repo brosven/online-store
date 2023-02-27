@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { UserStore } from './store/UserStore';
 import { DeviceStore } from './store/DeviceStore';
+import { BrandStore } from './store/BrandStore';
+import { TypeStore } from './store/TypeStore';
 import './index.css';
 
 export const Context = createContext(null);
@@ -14,6 +16,8 @@ root.render(
       value={{
         user: new UserStore(),
         device: new DeviceStore(),
+        brand: new BrandStore(),
+        type: new TypeStore(),
       }}
     >
       <App />

@@ -6,14 +6,24 @@ import { useContext, useState } from 'react';
 import { Context } from '../index';
 
 export const TypeBar = observer(() => {
-  const { device } = useContext(Context);
+  const { type, device } = useContext(Context);
   const [isOpen, setIsOpen] = useState(true);
 
-  const typeToggle = (type) => {
-    if (device.selectedType.id) {
-      device.selectedType.id === type.id ? device.setSelectedType({}) : device.setSelectedType(type);
+  const handleResetType = () => {
+    type.setSelectedType({});
+    device.setPage(1);
+  };
+
+  const handleSelectType = (el) => {
+    type.setSelectedType(el);
+    device.setPage(1);
+  };
+
+  const typeToggle = (el) => {
+    if (type.selectedType.id) {
+      type.selectedType.id === el.id ? handleResetType() : handleSelectType(el);
     } else {
-      device.setSelectedType(type);
+      type.setSelectedType(el);
     }
   };
 
@@ -32,14 +42,14 @@ export const TypeBar = observer(() => {
       </Button>
       {isOpen && (
         <List sx={{ display: 'flex', flexDirection: { xs: 'row', sm: 'column' }, flexWrap: 'wrap' }}>
-          {device.types.map((type) => (
+          {type.types.map((el) => (
             <ListItemButton
-              key={type.id}
-              onClick={() => typeToggle(type)}
-              selected={device.selectedType.id ? type.id === device.selectedType.id : false}
+              key={el.id}
+              onClick={() => typeToggle(el)}
+              selected={type.selectedType.id ? el.id === type.selectedType.id : false}
               sx={{ minWidth: '100px' }}
             >
-              <ListItemText primary={type.name} />
+              <ListItemText primary={el.name} />
             </ListItemButton>
           ))}
         </List>
